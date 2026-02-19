@@ -11,6 +11,9 @@ app.use(helmet());
 app.use(cors({origin:"http://localhost:3000"}));
 
 app.use(bodyParser.json());
+app.use("/api/suppliers",require("./routes/suppliers"));
+
+app.listen(PORT,()=> {console.log(`server running on port ${PORT}`)});
 
 const db = require("./config/db");
 db.query("SELECT 1").then(()=> console.log("db connected"));
