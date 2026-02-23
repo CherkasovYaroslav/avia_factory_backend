@@ -13,6 +13,7 @@ app.use(cors({origin:"http://localhost:3000"}));
 app.use(bodyParser.json());
 app.use("/api/suppliers",require("./routes/suppliers"));
 app.use("/api/clients",require("./routes/clients"));
+app.use("/api/employees",require("./routes/employees"));
 
 app.listen(PORT,()=> {console.log(`server running on port ${PORT}`)});
 
