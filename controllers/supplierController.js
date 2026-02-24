@@ -1,5 +1,5 @@
 const supplierService = require("../services/supplierService");
-exports.getClients = async(req,res,next) => {
+exports.getSuppliers = async(req,res,next) => {
     try{
         const suppliers = await supplierService.getAllSuppliers();
         res.json(suppliers);
@@ -9,7 +9,7 @@ exports.getClients = async(req,res,next) => {
 };
 
 
-exports.getClient = async(req,res,next) => {
+exports.getSupplier = async(req,res,next) => {
     try{
         const supplier = await supplierService.getSupplierById(req.params.Id);
         res.json(supplier);

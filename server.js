@@ -14,6 +14,10 @@ app.use(bodyParser.json());
 app.use("/api/suppliers",require("./routes/suppliers"));
 app.use("/api/clients",require("./routes/clients"));
 app.use("/api/employees",require("./routes/employees"));
+app.use("/api/sections",require("./routes/sections"));
+app.use("/api/planes",require("./routes/planes"));
+app.use("/api/orders",require("./routes/orders"));
+app.use("/api/products",require("./routes/products"));
 
 app.listen(PORT,()=> {console.log(`server running on port ${PORT}`)});
 
