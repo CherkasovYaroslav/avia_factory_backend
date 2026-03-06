@@ -11,7 +11,7 @@ exports.getSuppliers = async(req,res,next) => {
 
 exports.getSupplier = async(req,res,next) => {
     try{
-        const supplier = await supplierService.getSupplierById(req.params.Id);
+        const supplier = await supplierService.getSupplierById(req.params.id);
         res.json(supplier);
     }catch(error){
         next(error)
@@ -30,7 +30,7 @@ exports.createSupplier = async(req,res,next) => {
 
 exports.updateSupplier = async(req,res,next) => {
         try{
-        const updatedSupplier = await supplierService.update(req.params.Id, req.body);
+        const updatedSupplier = await supplierService.update(req.params.id, req.body);
         res.json(updatedSupplier);
     }catch(error){
         next(error)
@@ -39,7 +39,7 @@ exports.updateSupplier = async(req,res,next) => {
 
 exports.deleteSupplier = async(req,res,next) => {
         try{
-        await supplierService.delete(req.params.Id);
+        await supplierService.delete(req.params.id);
         res.json({message:"Supplier Deleted"});
     }catch(error){
         next(error)

@@ -3,9 +3,9 @@ const router = express.Router();
 const suppliersController = require("../controllers/supplierController");
 
 router.get("/", suppliersController.getSuppliers);
-router.get("/:Id", suppliersController.getSupplier);
+router.get("/:id", suppliersController.getSupplier);
 router.post("/", suppliersController.createSupplier);
-router.put("/:Id", suppliersController.updateSupplier);
-router.delete("/:Id", suppliersController.deleteSupplier);
+router.put("/:id", suppliersController.updateSupplier);
+router.delete("/:id", suppliersController.deleteSupplier);
 
 module.exports = router;
