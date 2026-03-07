@@ -3,9 +3,9 @@ const router = express.Router();
 const sectionController = require("../controllers/sectionController");
 
 router.get("/", sectionController.getSections);
-router.get("/:Id", sectionController.getSection);
+router.get("/:id", sectionController.getSection);
 router.post("/", sectionController.createSection);
-router.put("/:Id", sectionController.updateSection);
-router.delete("/:Id", sectionController.deleteSection);
+router.patch("/:id", sectionController.updateSection);
+router.delete("/:id", sectionController.deleteSection);
 
 module.exports = router;

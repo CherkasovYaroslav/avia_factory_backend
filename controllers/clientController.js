@@ -12,7 +12,7 @@ exports.getClients = async(req,res,next) => {
 
 exports.getClient = async(req,res,next) => {
     try{
-        const client = await clientService.getClientById(req.params.Id);
+        const client = await clientService.getClientById(req.params.id);
         res.json(client);
     }catch(error){
         next(error)
@@ -30,7 +30,7 @@ exports.createClient = async(req,res,next) => {
 
 exports.updateClient = async(req,res,next) => {
         try{
-        const updatedClient = await clientService.update(req.params.Id, req.body);
+        const updatedClient = await clientService.update(req.params.id, req.body);
         res.json(updatedClient);
     }catch(error){
         next(error)
@@ -39,7 +39,7 @@ exports.updateClient = async(req,res,next) => {
 
 exports.deleteClient = async(req,res,next) => {
         try{
-        await clientService.delete(req.params.Id);
+        await clientService.delete(req.params.id);
         res.json({message:"Client Deleted"});
     }catch(error){
         next(error)

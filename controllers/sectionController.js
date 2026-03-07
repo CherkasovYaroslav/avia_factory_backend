@@ -12,7 +12,7 @@ exports.getSections = async(req,res,next) => {
 
 exports.getSection = async(req,res,next) => {
     try{
-        const section = await sectionService.getSectionById(req.params.Id);
+        const section = await sectionService.getSectionById(req.params.id);
         res.json(section);
     }catch(error){
         next(error)
@@ -30,7 +30,7 @@ exports.createSection = async(req,res,next) => {
 
 exports.updateSection = async(req,res,next) => {
         try{
-        const updatedSection = await sectionService.updateSection(req.params.Id, req.body);
+        const updatedSection = await sectionService.updateSection(req.params.id, req.body);
         res.json(updatedSection);
     }catch(error){
         next(error)
@@ -39,7 +39,7 @@ exports.updateSection = async(req,res,next) => {
 
 exports.deleteSection = async(req,res,next) => {
         try{
-        await sectionService.deleteSection(req.params.Id);
+        await sectionService.deleteSection(req.params.id);
         res.json({message:"Deleted Section"});
     }catch(error){
         next(error)

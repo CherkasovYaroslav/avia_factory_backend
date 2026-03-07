@@ -5,8 +5,8 @@ exports.getAllClients = async () => {
         return rows; 
 };
 
-exports.getClientById = async (Id) => {
-        const [rows] = await db.query("SELECT *FROM `client` WHERE Id=?",[Id]);
+exports.getClientById = async (id) => {
+        const [rows] = await db.query("SELECT *FROM `client` WHERE Id=?",[id]);
         return rows[0]; 
 };
 
@@ -22,15 +22,15 @@ exports.create = async (client) => {
 
 };
 
-exports.update = async (Id, client) => {
+exports.update = async (id, client) => {
         const {name,phone_number,email,address} = client
         const [result] = await db.query("UPDATE `client` SET name = ?, phone_number = ?, email = ?,  address = ? WHERE Id = ?",
-                [name, phone_number, email, address, Id] 
+                [name, phone_number, email, address, id] 
         );
         
-        return {Id , ...client}; 
+        return {id , ...client}; 
 };
 
-exports.delete = async (Id) => {
-        await db.query("DELETE FROM `client` WHERE Id = ?",[Id]);
+exports.delete = async (id) => {
+        await db.query("DELETE FROM `client` WHERE Id = ?",[id]);
 };
