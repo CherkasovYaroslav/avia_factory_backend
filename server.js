@@ -11,6 +11,7 @@ app.use(helmet());
 app.use(cors({origin:"http://localhost:5173"}));
 
 app.use(bodyParser.json());
+
 app.use("/suppliers",require("./routes/suppliers"));
 app.use("/clients",require("./routes/clients"));
 app.use("/employees",require("./routes/employees"));
@@ -18,6 +19,7 @@ app.use("/sections",require("./routes/sections"));
 app.use("/planes",require("./routes/planes"));
 app.use("/orders",require("./routes/orders"));
 app.use("/products",require("./routes/products"));
+app.use("/roles",require("./routes/roles"));
 
 app.listen(PORT,()=> {console.log(`server running on port ${PORT}`)});
 

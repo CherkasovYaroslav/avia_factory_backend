@@ -12,7 +12,7 @@ exports.getEmployees = async(req,res,next) => {
 
 exports.getEmployee = async(req,res,next) => {
     try{
-        const employee = await employeeService.getEmployeeById(req.params.Id);
+        const employee = await employeeService.getEmployeeById(req.params.id);
         res.json(employee);
     }catch(error){
         next(error)
@@ -30,7 +30,7 @@ exports.createEmployee = async(req,res,next) => {
 
 exports.updateEmployee = async(req,res,next) => {
         try{
-        const updatedEmployee = await employeeService.update(req.params.Id, req.body);
+        const updatedEmployee = await employeeService.update(req.params.id, req.body);
         res.json(updatedEmployee);
     }catch(error){
         next(error)
@@ -39,7 +39,7 @@ exports.updateEmployee = async(req,res,next) => {
 
 exports.deleteEmployee = async(req,res,next) => {
         try{
-        await employeeService.delete(req.params.Id);
+        await employeeService.delete(req.params.id);
         res.json({message:"Employee Deleted"});
     }catch(error){
         next(error)
