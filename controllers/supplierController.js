@@ -45,3 +45,12 @@ exports.deleteSupplier = async(req,res,next) => {
         next(error)
     }
 };
+
+exports.getSupplierSectionsAndDetails = async (req, res, next) => {
+    try {
+        const data = await supplierService.getSupplierSectionsAndDetails(req.params.id);
+        res.json(data);
+    } catch (error) {
+        next(error);
+    }
+};

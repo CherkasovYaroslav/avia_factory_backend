@@ -45,3 +45,12 @@ exports.deleteSection = async(req,res,next) => {
         next(error)
     }
 };
+
+exports.getSectionSuppliers = async (req, res, next) => {
+    try {
+        const suppliers = await sectionService.getSectionSuppliersAndDetails(req.params.id);
+        res.json(suppliers);
+    } catch (error) {
+        next(error);
+    }
+};

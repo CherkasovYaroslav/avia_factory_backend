@@ -33,3 +33,19 @@ exports.update = async (Id, supplier) => {
 exports.delete = async (Id) => {
         await db.query("DELETE FROM `supplier` WHERE Id = ?",[Id]);
 };
+
+exports.getSupplierSectionsAndDetails = async (supplierId) => {
+
+    const [rows] = await db.query(`
+        SELECT 
+            section.id AS section_id,
+            section.name AS section_name,
+            supplier.details
+        FROM section_supplier
+        JOIN section ON section.id = section_supplier.section_id
+        JOIN supplier ON supplier.id = section_supplier.supplier_id
+        WHERE supplier.id = ?
+    `, [supplierId]);
+
+    return rows;
+};

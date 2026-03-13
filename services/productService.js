@@ -1,36 +1,72 @@
 const db = require("../config/db");
 
 exports.getAllProducts = async () => {
-        const [rows] = await db.query("SELECT *FROM `product`");
-        return rows; 
+    const [rows] = await db.query(`
+        SELECT
+            p.id,
+            p.unique_code,
+            p.production_date,
+            p.status,
+            p.plane_id,
+            p.order_id,
+
+            pl.model AS plane_name,
+            o.status AS order_status,
+            o.total_price AS order_total_price
+
+        FROM product p
+        LEFT JOIN plane pl ON p.plane_id = pl.id
+        LEFT JOIN \`order\` o ON p.order_id = o.id
+        ORDER BY p.id
+    `);
+
+    return rows;
 };
 
-exports.getProductById = async (Id) => {
-        const [rows] = await db.query("SELECT *FROM `product` WHERE Id=?",[Id]);
-        return rows[0]; 
+exports.getProductById = async (id) => {
+    const [rows] = await db.query(`
+        SELECT
+            p.id,
+            p.unique_code,
+            p.production_date,
+            p.status,
+            p.plane_id,
+            p.order_id,
+
+            pl.model AS plane_name,
+            o.status AS order_status,
+            o.total_price AS order_total_price
+
+        FROM product p
+        LEFT JOIN plane pl ON p.plane_id = pl.id
+        LEFT JOIN \`order\` o ON p.order_id = o.id
+        WHERE p.id = ?
+    `, [id]);
+
+    return rows[0];
 };
 
-//TODO
 exports.createProduct = async (product) => {
-       
-        return  db.query("INSERT INTO `product` SET ?",
-                [product] 
-        );
-         
+    const [result] = await db.query(
+        "INSERT INTO product SET ?",
+        [product]
+    );
 
+    return { id: result.insertId, ...product };
 };
 
-//TODO
-exports.updateProduct = async (Id, product) => {
-       // const {name, surname, phone_number, email, birth_date, hire_date, salary, role_id, section_id} = employee;
-        return  db.query("UPDATE `product` SET ? WHERE Id = ?",
-                [product, Id] 
-        );
-         
+exports.updateProduct = async (id, product) => {
+    await db.query(
+        "UPDATE product SET ? WHERE id = ?",
+        [product, id]
+    );
 
+    return { id, ...product };
 };
 
-
-exports.deleteProduct = async (Id) => {
-        await db.query("DELETE FROM `product` WHERE Id = ?",[Id]);
+exports.deleteProduct = async (id) => {
+    await db.query(
+        "DELETE FROM product WHERE id = ?",
+        [id]
+    );
 };

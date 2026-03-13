@@ -3,9 +3,9 @@ const router = express.Router();
 const planeController = require("../controllers/planeController");
 
 router.get("/", planeController.getPlanes);
-router.get("/:Id", planeController.getPlane);
+router.get("/:id", planeController.getPlane);
 router.post("/", planeController.createPlane);
-router.put("/:Id", planeController.updatePlane);
-router.delete("/:Id", planeController.deletePlane);
+router.patch("/:id", planeController.updatePlane);
+router.delete("/:id", planeController.deletePlane);
 
 module.exports = router;

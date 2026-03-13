@@ -12,7 +12,7 @@ exports.getPlanes = async(req,res,next) => {
 
 exports.getPlane = async(req,res,next) => {
     try{
-        const plane = await planeService.getPlaneById(req.params.Id);
+        const plane = await planeService.getPlaneById(req.params.id);
         res.json(plane);
     }catch(error){
         next(error)
@@ -30,7 +30,7 @@ exports.createPlane = async(req,res,next) => {
 
 exports.updatePlane = async(req,res,next) => {
         try{
-        const updatedPlane = await planeService.updatePlane(req.params.Id, req.body);
+        const updatedPlane = await planeService.updatePlane(req.params.id, req.body);
         res.json(updatedPlane);
     }catch(error){
         next(error)
@@ -39,7 +39,7 @@ exports.updatePlane = async(req,res,next) => {
 
 exports.deletePlane = async(req,res,next) => {
         try{
-        await planeService.deletePlane(req.params.Id);
+        await planeService.deletePlane(req.params.id);
         res.json({message:"Deleted Plane"});
     }catch(error){
         next(error)

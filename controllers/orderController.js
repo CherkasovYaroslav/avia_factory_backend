@@ -12,7 +12,7 @@ exports.getOrders = async(req,res,next) => {
 
 exports.getOrder = async(req,res,next) => {
     try{
-        const order = await orderService.getOrderById(req.params.Id);
+        const order = await orderService.getOrderById(req.params.id);
         res.json(order);
     }catch(error){
         next(error)
@@ -30,7 +30,7 @@ exports.createOrder = async(req,res,next) => {
 
 exports.updateOrder = async(req,res,next) => {
         try{
-        const updatedOrder = await orderService.updateOrder(req.params.Id, req.body);
+        const updatedOrder = await orderService.updateOrder(req.params.id, req.body);
         res.json(updatedOrder);
     }catch(error){
         next(error)
@@ -39,7 +39,7 @@ exports.updateOrder = async(req,res,next) => {
 
 exports.deleteOrder = async(req,res,next) => {
         try{
-        await orderService.deleteOrder(req.params.Id);
+        await orderService.deleteOrder(req.params.id);
         res.json({message:"Deleted Order"});
     }catch(error){
         next(error)

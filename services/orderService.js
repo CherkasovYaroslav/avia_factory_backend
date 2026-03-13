@@ -1,36 +1,60 @@
 const db = require("../config/db");
 
 exports.getAllOrders = async () => {
-        const [rows] = await db.query("SELECT *FROM `order`");
-        return rows; 
+    const [rows] = await db.query(`
+        SELECT
+            o.id,
+            o.total_price,
+            o.date,
+            o.status,
+            o.client_id,
+            c.name AS client_name
+        FROM \`order\` o
+        LEFT JOIN client c ON o.client_id = c.id
+        ORDER BY o.id
+    `);
+
+    return rows;
 };
 
-exports.getOrderById = async (Id) => {
-        const [rows] = await db.query("SELECT *FROM `order` WHERE Id=?",[Id]);
-        return rows[0]; 
+exports.getOrderById = async (id) => {
+    const [rows] = await db.query(`
+        SELECT
+            o.id,
+            o.total_price,
+            o.date,
+            o.status,
+            o.client_id,
+            c.name AS client_name
+        FROM \`order\` o
+        LEFT JOIN client c ON o.client_id = c.id
+        WHERE o.id = ?
+    `, [id]);
+
+    return rows[0];
 };
 
-//TODO
 exports.createOrder = async (order) => {
-       
-        return  db.query("INSERT INTO `order` SET ?",
-                [order] 
-        );
-         
+    const [result] = await db.query(
+        "INSERT INTO \`order\` SET ?",
+        [order]
+    );
 
+    return { id: result.insertId, ...order };
 };
 
-//TODO
-exports.updateOrder = async (Id, order) => {
-       // const {name, surname, phone_number, email, birth_date, hire_date, salary, role_id, section_id} = employee;
-        return  db.query("UPDATE `order` SET ? WHERE Id = ?",
-                [order, Id] 
-        );
-         
+exports.updateOrder = async (id, order) => {
+    await db.query(
+        "UPDATE \`order\` SET ? WHERE id = ?",
+        [order, id]
+    );
 
+    return { id, ...order };
 };
 
-
-exports.deleteOrder = async (Id) => {
-        await db.query("DELETE FROM `order` WHERE Id = ?",[Id]);
+exports.deleteOrder = async (id) => {
+    await db.query(
+        "DELETE FROM \`order\` WHERE id = ?",
+        [id]
+    );
 };
