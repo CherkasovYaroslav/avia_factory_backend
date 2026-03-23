@@ -11,7 +11,9 @@ exports.getAllProducts = async () => {
             p.order_id,
 
             pl.model AS plane_name,
-            o.status AS order_status,
+            pl.type AS plane_type,
+            pl.price AS plane_price,
+            
             o.total_price AS order_total_price
 
         FROM product p
@@ -34,7 +36,8 @@ exports.getProductById = async (id) => {
             p.order_id,
 
             pl.model AS plane_name,
-            o.status AS order_status,
+            pl.type AS plane_type,
+            pl.price AS plane_price,
             o.total_price AS order_total_price
 
         FROM product p
